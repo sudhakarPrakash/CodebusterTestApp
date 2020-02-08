@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,10 +10,229 @@
     tools:context=".HospitalActivity"
     tools:showIn="@layout/activity_hospital">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <RelativeLayout
+            android:id="@+id/rl_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_see_on_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See on map"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.google.android.gms.maps.MapView
+
+                android:id="@+id/map_view"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_below="@+id/mtv_see_on_map"
+                android:layout_marginBottom="5dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_distance_from_city_centre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/map_view"
+                android:layout_margin="3dp"
+                android:drawableStart="@drawable/ic_location_on_black_24dp"
+                android:textColor="@android:color/black"
+                tools:text="distance_from_city_centre" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_distance_from_user_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mtv_distance_from_city_centre"
+                android:layout_margin="3dp"
+                android:drawableStart="@drawable/ic_location_green_24dp"
+                android:textColor="@android:color/holo_green_light"
+                tools:text="distance_from_user_location" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_hospital_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_location"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/colorGrey"
+            android:outlineProvider="background">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_hospital_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Description"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_hospital_description_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mtv_hospital_description"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorBlack"
+                tools:text="Description" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_see_full_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mtv_hospital_description_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@android:color/holo_blue_dark"
+                tools:text="See full description" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_hospital_services"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_hospital_description"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/colorGrey"
+            android:outlineProvider="background">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_hospital_services"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Services"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_hospital_services_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mtv_hospital_services"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorBlack"
+                tools:text="Description" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_see_all_services"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mtv_hospital_services_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@android:color/holo_blue_dark"
+                tools:text="See full description" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_hospital_card_benefits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_hospital_services"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/colorGrey"
+            android:outlineProvider="background">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_hospital_card_benefits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Card Benefits"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_hospital_important_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_hospital_card_benefits"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/colorGrey"
+            android:outlineProvider="background">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_hospital_important_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Important Information"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_hospital_important_info_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mtv_hospital_important_info"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorBlack"
+                tools:text="Important Information" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_see_full_important_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mtv_hospital_important_info_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@android:color/holo_blue_dark"
+                tools:text="See full information" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

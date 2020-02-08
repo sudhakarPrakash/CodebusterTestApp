@@ -78,15 +78,16 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_recent_searches"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorGrey"
             android:background="@drawable/rounded_corner"
             android:layout_below="@id/rl_searchContainer"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="10dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mtv_recentSearches"
@@ -109,6 +110,41 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_popular_searches"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorGrey"
+            android:background="@drawable/rounded_corner"
+            android:layout_below="@id/rl_recent_searches"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_popularSearches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Popular searches"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_popularSearches"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mtv_popularSearches"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </RelativeLayout>
+
     </RelativeLayout>
 
 </ScrollView>

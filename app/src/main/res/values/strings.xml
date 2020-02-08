@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hospital App</string>
+    <string name="app_name">TestApp</string>
     <string name="login">login</string>
     <string name="sign_up">sign Up</string>
     <string name="title_activity_register">RegisterActivity</string>
@@ -108,5 +108,7 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+
+    <string name="Google_Map_API_KEY">AIzaSyBkaqPoX6paTFE9OiIBdGhIjdgWPwWUYPM</string>
 
 </resources>
