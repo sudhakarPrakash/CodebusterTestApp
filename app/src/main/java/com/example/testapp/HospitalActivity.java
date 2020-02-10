@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -20,10 +21,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.material.textview.MaterialTextView;
 
 import static com.example.testapp.Constants.MAP_VIEW_BUNDLE_KEY;
 
-public class HospitalActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class HospitalActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
     Connection connection;
     String markRecent;
@@ -33,12 +35,23 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
     private MapView mapView;
     private GoogleMap gmap;
 
+    MaterialTextView mSeeFullDescription;
+    MaterialTextView mSeeAllServices;
+    MaterialTextView mSeeFullInformation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mSeeFullDescription = findViewById(R.id.mtv_see_full_description);
+        mSeeAllServices = findViewById(R.id.mtv_see_all_services);
+        mSeeFullInformation = findViewById(R.id.mtv_see_full_important_info);
+        mSeeFullDescription.setOnClickListener(this);
+        mSeeAllServices.setOnClickListener(this);
+        mSeeFullInformation.setOnClickListener(this);
 
         appBarLayout = findViewById(R.id.app_bar);
 
@@ -141,5 +154,22 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
         gmap.setMinZoomPreference(12);
         LatLng ny = new LatLng(40.7143528, -74.0059731);
         gmap.moveCamera(CameraUpdateFactory.newLatLng(ny));
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.mtv_see_full_description:
+                Intent intent = new Intent(this,DetailsTabbedActivity.class);
+                startActivity(intent);
+
+                break;
+            case R.id.mtv_see_all_services:
+                break;
+            case R.id.mtv_see_full_important_info:
+                break;
+            default:
+                break;
+        }
     }
 }

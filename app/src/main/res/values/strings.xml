@@ -110,5 +110,8 @@
     </string>
 
     <string name="Google_Map_API_KEY">AIzaSyBkaqPoX6paTFE9OiIBdGhIjdgWPwWUYPM</string>
+    <string name="title_activity_details_tabbed">DetailsTabbedActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 
 </resources>

@@ -25,6 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="See on map"
+                android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -103,6 +104,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:text="See full description"
                 android:textColor="@android:color/holo_blue_dark"
                 tools:text="See full description" />
 
@@ -154,7 +156,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:textColor="@android:color/holo_blue_dark"
-                tools:text="See full description" />
+                tools:text="See all services" />
 
         </RelativeLayout>
 
@@ -229,6 +231,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:text="See full information"
                 android:textColor="@android:color/holo_blue_dark"
                 tools:text="See full information" />
 
