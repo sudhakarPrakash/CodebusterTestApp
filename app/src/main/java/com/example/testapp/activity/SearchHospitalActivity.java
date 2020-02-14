@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.testapp.R;
+import com.example.testapp.adapter.RecentSearchAdapter;
+import com.example.testapp.database.DBConnection;
+import com.example.testapp.utilCode.Hospital;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialAutoCompleteTextView;
 
@@ -49,7 +53,7 @@ public class SearchHospitalActivity extends AppCompatActivity implements View.On
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
 
 
@@ -58,8 +62,8 @@ public class SearchHospitalActivity extends AppCompatActivity implements View.On
 
         //create connnection with the DATABASE
         try {
-            Connection connection = ConnectionHelper.createConnectionWithDB();
-            if(connection!=null) {
+            Connection connection = DBConnection.getConnection();
+            if (connection != null) {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -100,13 +104,13 @@ public class SearchHospitalActivity extends AppCompatActivity implements View.On
 
                 }
 
-            }else{
+            } else {
                 Toast.makeText(this, "connection failure try again", Toast.LENGTH_SHORT).show();
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             mAdapter = new RecentSearchAdapter(hospitalList, this);
             mRecyclerView.setAdapter(mAdapter);
         }
@@ -117,11 +121,11 @@ public class SearchHospitalActivity extends AppCompatActivity implements View.On
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_search:
-                String QUERY1= "SELECT top 14 HospitalId,HospitalName,Description,Address FROM hospitals";
-                String QUERY2= "select top 14 HospitalImage from hospitalImages";
+                String QUERY1 = "SELECT top 14 HospitalId,HospitalName,Description,Address FROM hospitals";
+                String QUERY2 = "select top 14 HospitalImage from hospitalImages";
                 Intent intent = new Intent(SearchHospitalActivity.this, SearchResultActivity.class);
-                intent.putExtra("QUERY1",QUERY1);
-                intent.putExtra("QUERY2",QUERY2);
+                intent.putExtra("QUERY1", QUERY1);
+                intent.putExtra("QUERY2", QUERY2);
                 startActivity(intent);
                 break;
             case R.id.tv_city:

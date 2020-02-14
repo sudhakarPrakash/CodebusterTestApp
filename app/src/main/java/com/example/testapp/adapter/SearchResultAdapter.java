@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,11 +7,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.testapp.R;
+import com.example.testapp.activity.HospitalActivity;
+import com.example.testapp.interfaces.ItemClickListener;
+import com.example.testapp.utilCode.Hospital;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.io.ByteArrayOutputStream;
@@ -27,7 +32,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     // you provide access to all the views for a data item in a view holder
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    SearchResultAdapter(ArrayList<Hospital> myDataset, Context context) {
+    public SearchResultAdapter(ArrayList<Hospital> myDataset, Context context) {
         hospitalList = myDataset;
         this.context = context;
     }
@@ -35,9 +40,9 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
+                                           int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.rv_item_layout, parent, false);
+                .inflate(R.layout.rv_item_hospital, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
@@ -61,7 +66,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
             public void onClick(View view, int position) {
                 Bundle bundle = new Bundle();
 
-                bundle.putString("Hospital_Id_Key",holder.hospitalId);
+                bundle.putString("Hospital_Id_Key", holder.hospitalId);
                 bundle.putString("Hospital_Name_Key", holder.hospitalName.getText().toString());
                 bundle.putString("Hospital_Description_Key", holder.description.getText().toString());
 
@@ -69,10 +74,10 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
                 //to the HospitalActivity
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 Bitmap bitmap_hospital = hospital.getHospitalImage();
-                bitmap_hospital.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+                bitmap_hospital.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
 
-                bundle.putByteArray("Image",byteArray);
+                bundle.putByteArray("Image", byteArray);
 
                 Intent intent = new Intent(view.getContext(), HospitalActivity.class);
                 intent.putExtras(bundle);
@@ -98,19 +103,24 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         View view;
         MaterialTextView hospitalName;
         MaterialTextView description;
-        ImageView imageView;
+        ShapeableImageView imageView;
         MaterialTextView hospitalAddress;
         String hospitalId;
         private ItemClickListener itemClickListener;
 
 
-        MyViewHolder(View v) {
+        public MyViewHolder(View v) {
             super(v);
             view = v;
             hospitalName = v.findViewById(R.id.hospitalName);
             description = v.findViewById(R.id.hospitalDescription);
             imageView = v.findViewById(R.id.iv_hospital);
             hospitalAddress = v.findViewById(R.id.hospitalAddress);
+
+            imageView.setShapeAppearanceModel(imageView.getShapeAppearanceModel()
+                    .toBuilder()
+                    .setTopRightCorner(CornerFamily.ROUNDED, 50)
+                    .build());
 
             v.setOnClickListener(this);
         }

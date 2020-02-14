@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.testapp.R;
+import com.example.testapp.utilCode.MyGridItem;
+
 import java.util.ArrayList;
 
 public class MyGridViewAdapter extends ArrayAdapter {
@@ -18,7 +21,7 @@ public class MyGridViewAdapter extends ArrayAdapter {
     private ArrayList<MyGridItem> gridItemList;
     private LayoutInflater inflater;
 
-    MyGridViewAdapter(@NonNull Context context, int resource, ArrayList<MyGridItem> gridItemList) {
+    public MyGridViewAdapter(@NonNull Context context, int resource, ArrayList<MyGridItem> gridItemList) {
         super(context, resource, gridItemList);
         this.gridItemList = gridItemList;
         inflater = LayoutInflater.from(context);

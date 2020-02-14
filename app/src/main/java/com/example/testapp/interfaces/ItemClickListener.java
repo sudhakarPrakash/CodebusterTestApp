@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.interfaces;
 
 import android.view.View;
 

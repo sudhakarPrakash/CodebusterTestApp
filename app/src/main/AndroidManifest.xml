@@ -15,17 +15,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity
-            android:name=".DetailsTabbedActivity"
+            android:name=".activity.DetailsTabbedActivity"
             android:label="@string/title_activity_details_tabbed"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".activity.HospitalActivity"
+            android:theme="@style/TabbedActivity_Theme">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity> <!-- android:theme="@style/AppTheme.NoActionBar" -->
         <activity
-            android:name=".HospitalActivity"
+            android:name=".activity.HospitalActivity"
             android:label="@string/title_activity_hospital"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".SearchResultActivity" />
-        <activity android:name=".SearchHospitalActivity" />
-        <activity android:name=".HomeActivity">
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.SearchResultActivity" />
+        <activity android:name=".activity.SearchHospitalActivity" />
+        <activity android:name=".activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,10 +43,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activity.RegisterActivity"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activity.LoginActivity">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->

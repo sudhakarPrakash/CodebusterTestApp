@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,23 +6,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.testapp.R;
+import com.example.testapp.viewModel.DescriptionFragmentViewModel;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends Fragment {
+public class DescriptionTabFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private PageViewModel pageViewModel;
+    private DescriptionFragmentViewModel descriptionFragmentViewModel;
 
-    public static PlaceholderFragment newInstance(int index) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+    public static DescriptionTabFragment newInstance(int index) {
+        DescriptionTabFragment fragment = new DescriptionTabFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
@@ -32,21 +35,21 @@ public class PlaceholderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
+        descriptionFragmentViewModel = new ViewModelProvider(this).get(DescriptionFragmentViewModel.class);
         int index = 1;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        pageViewModel.setIndex(index);
+        descriptionFragmentViewModel.setIndex(index);
     }
 
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.demo_tab_fragment, container, false);
+        View root = inflater.inflate(R.layout.description_tab_fragment, container, false);
         final TextView textView = root.findViewById(R.id.section_label);
-        pageViewModel.getText().observe(this, new Observer<String>() {
+        descriptionFragmentViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

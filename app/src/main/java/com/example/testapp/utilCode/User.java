@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.utilCode;
 
 public class User {
     private String name;

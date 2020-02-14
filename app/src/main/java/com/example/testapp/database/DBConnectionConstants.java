@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.database;
 
 class DBConnectionConstants {
 
@@ -9,11 +9,11 @@ class DBConnectionConstants {
 
 
     //JDBC Driver
-    final static String JdbcDriver ="net.sourceforge.jtds.jdbc.Driver";
+    final static String JdbcDriver = "net.sourceforge.jtds.jdbc.Driver";
     //Database Name is AndroidDatabase
     final static String DBName = "AndroidDatabase";
     //Database username
     final static String DBusername = "sa";
     //Database password
-    final static String DBpassword  ="92466@Tcs";
+    final static String DBpassword = "92466@Tcs";
 }

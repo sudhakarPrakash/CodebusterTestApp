@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,33 +11,35 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.testapp.R;
+import com.example.testapp.database.DBConnection;
 import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.material.appbar.AppBarLayout;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.textview.MaterialTextView;
 
-import static com.example.testapp.Constants.MAP_VIEW_BUNDLE_KEY;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import static com.example.testapp.constant.Constants.MAP_VIEW_BUNDLE_KEY;
+
 
 public class HospitalActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
     Connection connection;
     String markRecent;
+    String TITLE;
 
     AppBarLayout appBarLayout;
-
-    private MapView mapView;
-    private GoogleMap gmap;
-
     MaterialTextView mSeeFullDescription;
     MaterialTextView mSeeAllServices;
     MaterialTextView mSeeFullInformation;
+    private MapView mapView;
+    private GoogleMap gmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +77,7 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
         }
 
         assert bundle != null;
-        final String TITLE = bundle.getString("Hospital_Name_Key") + "," + bundle.getString("Hospital_Description_Key");
+        TITLE = bundle.getString("Hospital_Name_Key") + "," + bundle.getString("Hospital_Description_Key");
         setTitle(TITLE);
         markRecent = bundle.getString("Hospital_Id_Key");
 
@@ -89,7 +91,7 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
 //        });
 
 
-        connection = ConnectionHelper.createConnectionWithDB();
+        connection = DBConnection.getConnection();
         try {
             String query = "INSERT INTO recentSearches (HospitalId) VALUES ('" + markRecent + "')";
             Statement statement = connection.createStatement();
@@ -113,6 +115,7 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
 
         mapView.onSaveInstanceState(mapViewBundle);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -130,22 +133,24 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
         super.onStop();
         mapView.onStop();
     }
+
     @Override
     protected void onPause() {
         mapView.onPause();
         super.onPause();
     }
+
     @Override
     protected void onDestroy() {
         mapView.onDestroy();
         super.onDestroy();
     }
+
     @Override
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
     }
-
 
 
     @Override
@@ -158,9 +163,10 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
 
     @Override
     public void onClick(View view) {
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.mtv_see_full_description:
-                Intent intent = new Intent(this,DetailsTabbedActivity.class);
+                Intent intent = new Intent(this, DetailsTabbedActivity.class);
+                intent.putExtra("TITLE", TITLE);
                 startActivity(intent);
 
                 break;

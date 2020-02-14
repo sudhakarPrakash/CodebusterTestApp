@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.database;
 
 import android.annotation.SuppressLint;
 import android.os.StrictMode;
@@ -8,16 +8,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static com.example.testapp.DBConnectionConstants.DBName;
-import static com.example.testapp.DBConnectionConstants.DBpassword;
-import static com.example.testapp.DBConnectionConstants.DBusername;
-import static com.example.testapp.DBConnectionConstants.IPv4;
-import static com.example.testapp.DBConnectionConstants.JdbcDriver;
+import static com.example.testapp.database.DBConnectionConstants.DBName;
+import static com.example.testapp.database.DBConnectionConstants.DBpassword;
+import static com.example.testapp.database.DBConnectionConstants.DBusername;
+import static com.example.testapp.database.DBConnectionConstants.IPv4;
+import static com.example.testapp.database.DBConnectionConstants.JdbcDriver;
 
-class ConnectionHelper {
+public class ConnectionHelper {
 
     @SuppressLint("NewApi")
-    static Connection createConnectionWithDB(){
+    public static Connection createConnectionWithDB() {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
         StrictMode.setThreadPolicy(policy);

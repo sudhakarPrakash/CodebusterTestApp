@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,6 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.testapp.R;
+import com.example.testapp.adapter.SearchResultAdapter;
+import com.example.testapp.database.DBConnection;
+import com.example.testapp.utilCode.Hospital;
+
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,10 +23,9 @@ import java.util.ArrayList;
 
 public class SearchResultActivity extends AppCompatActivity {
 
+    ArrayList<Hospital> hospitalList;
     private String QUERY1;
     private String QUERY2;
-
-    ArrayList<Hospital> hospitalList;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -48,7 +52,7 @@ public class SearchResultActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         try {
-            Connection connection = ConnectionHelper.createConnectionWithDB();
+            Connection connection = DBConnection.getConnection();
             Statement statement1 = connection.createStatement();
             ResultSet rs1 = statement1.executeQuery(QUERY1);
 
@@ -63,7 +67,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 Bitmap decodebitmap = BitmapFactory.decodeByteArray(decodeString, 0, decodeString.length);
 
 
-                hospitalList.add(new Hospital(rs1.getString("HospitalId"),rs1.getString("HospitalName"), rs1.getString("Description"), decodebitmap,rs1.getString("Address")));
+                hospitalList.add(new Hospital(rs1.getString("HospitalId"), rs1.getString("HospitalName"), rs1.getString("Description"), decodebitmap, rs1.getString("Address")));
 
             }
 

@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -15,6 +15,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.testapp.R;
+import com.example.testapp.database.DBConnection;
+import com.example.testapp.utilCode.User;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialAutoCompleteTextView;
@@ -29,15 +32,13 @@ import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //References for DATABASE operations
+    static Connection connection = null;
+    private static AlertDialog alertDialogProgress;
     TextInputEditText mName_et, mMobile_et, mEmail_et;
     MaterialAutoCompleteTextView mGender_tv, mCity_tv;
     MaterialButton mRegister_btn;
-
     private ProgressBar progressBar;
-    private static AlertDialog alertDialogProgress;
-
-    //References for DATABASE operations
-    static Connection connection = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +60,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //Make Query
         String query = "select CityName from cities";
 
-        //create connnection with the DATABASE
+        //get connnection with the DATABASE
         try {
-            connection = ConnectionHelper.createConnectionWithDB();
-            if(connection!=null) {
+            connection = DBConnection.getConnection();
+            if (connection != null) {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -76,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, cityList);
                 mCity_tv.setThreshold(1);
                 mCity_tv.setAdapter(adapter);
-            }else{
+            } else {
                 Toast.makeText(this, "connection failure try again", Toast.LENGTH_SHORT).show();
             }
 
@@ -161,9 +162,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     /* ************** to register user on separate thread ****************/
 
     private static class AddUser extends AsyncTask {
-        private WeakReference<RegisterActivity> registerActivity;
-
         User newUser = null;
+        private WeakReference<RegisterActivity> registerActivity;
 
         AddUser(RegisterActivity registerActivity) {
             this.registerActivity = new WeakReference<>(registerActivity);
@@ -191,24 +191,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             //Take reference of RegisterActivity
             RegisterActivity registerActivityContext = registerActivity.get();
 
-                //Insert User into the DATABASE
-                try {
-                    String query = "Insert into users"
-                            + " (UserName,City,MobileNo,EmailId,Gender) "
-                            + "values "
-                            + "('"
-                            + newUser.getName() + "','"
-                            + newUser.getCity() + "','"
-                            + newUser.getMobileNo() + "','"
-                            + newUser.getEmail() + "','"
-                            + newUser.getGender() + "')";
+            //Insert User into the DATABASE
+            try {
+                String query = "Insert into users"
+                        + " (UserName,City,MobileNo,EmailId,Gender) "
+                        + "values "
+                        + "('"
+                        + newUser.getName() + "','"
+                        + newUser.getCity() + "','"
+                        + newUser.getMobileNo() + "','"
+                        + newUser.getEmail() + "','"
+                        + newUser.getGender() + "')";
 
-                    PreparedStatement preparedStatement = connection.prepareStatement(query);
-                    preparedStatement.executeUpdate();
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             return null;
         }
 
@@ -227,7 +227,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             registerActivityContext.openUserProfileActivity();
         }
 
-        void showDialog(){
+        void showDialog() {
             //Take reference of RegisterActivity
             RegisterActivity registerActivityContext = registerActivity.get();
 

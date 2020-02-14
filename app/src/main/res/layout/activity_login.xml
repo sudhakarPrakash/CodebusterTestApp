@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".activity.LoginActivity">
 
     <RelativeLayout
         android:id="@+id/rl_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="50dp"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:padding="50dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_emailId"
@@ -60,10 +60,10 @@
             android:layout_below="@+id/til_password"
             android:layout_marginTop="30dp"
             android:clickable="true"
+            android:focusable="true"
             android:text="Forgot Password ?"
             android:textColor="@color/colorBlack"
-            android:textStyle="bold"
-            android:focusable="true" />
+            android:textStyle="bold" />
 
 
         <com.google.android.material.button.MaterialButton

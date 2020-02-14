@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.activity;
 
 import android.Manifest;
 import android.content.Context;
@@ -19,6 +19,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.example.testapp.R;
+import com.example.testapp.adapter.MyGridViewAdapter;
+import com.example.testapp.database.DBConnection;
+import com.example.testapp.utilCode.MyGridItem;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -91,15 +96,15 @@ public class HomeActivity extends AppCompatActivity {
 
                             //create connection
                             try {
-                                Connection connection = ConnectionHelper.createConnectionWithDB();
+                                Connection connection = DBConnection.getConnection();
                                 Statement statement = connection.createStatement();
-                                String QUERY1 = "SELECT * FROM hospitals WHERE Description = " + "'"+city+"'";
-                                String tempQUERY1 = "SELECT HospitalId FROM hospitals WHERE Description = " + "'"+city+"'";
+                                String QUERY1 = "SELECT * FROM hospitals WHERE Description = " + "'" + city + "'";
+                                String tempQUERY1 = "SELECT HospitalId FROM hospitals WHERE Description = " + "'" + city + "'";
                                 String QUERY2 = "SELECT * FROM hospitalImages WHERE HospitalId in " + "(" + tempQUERY1 + ")";
 
                                 Intent intent = new Intent(HomeActivity.this, SearchResultActivity.class);
-                                intent.putExtra("QUERY1",QUERY1);
-                                intent.putExtra("QUERY2",QUERY2);
+                                intent.putExtra("QUERY1", QUERY1);
+                                intent.putExtra("QUERY2", QUERY2);
                                 startActivity(intent);
 
                             } catch (SQLException e) {

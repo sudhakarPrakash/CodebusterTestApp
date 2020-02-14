@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,11 +8,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.imageview.ShapeableImageView;
+import com.example.testapp.R;
+import com.example.testapp.activity.HospitalActivity;
+import com.example.testapp.interfaces.ItemClickListener;
+import com.example.testapp.utilCode.Hospital;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.io.ByteArrayOutputStream;
@@ -31,7 +35,7 @@ public class RecentSearchAdapter extends RecyclerView.Adapter<RecentSearchAdapte
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.rv_item_recent_searches_layout, parent, false);
+                .inflate(R.layout.rv_item_recent_search, parent, false);
         RecentSearchAdapter.MyViewHolder vh = new RecentSearchAdapter.MyViewHolder(v);
         return vh;
     }
@@ -55,18 +59,18 @@ public class RecentSearchAdapter extends RecyclerView.Adapter<RecentSearchAdapte
             public void onClick(View view, int position) {
                 Bundle bundle = new Bundle();
 
-                bundle.putString("Hospital_Id_Key",holder.hospitalId);
-                bundle.putString("Hospital_Description_Key",hospital.getDescription());
+                bundle.putString("Hospital_Id_Key", holder.hospitalId);
+                bundle.putString("Hospital_Description_Key", hospital.getDescription());
                 bundle.putString("Hospital_Name_Key", holder.hospitalName.getText().toString());
 
                 //Convert Bitmap to byte array to put into bundle to send through intent
                 //to the HospitalActivity
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 Bitmap bitmap_hospital = hospital.getHospitalImage();
-                bitmap_hospital.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+                bitmap_hospital.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
 
-                bundle.putByteArray("Image",byteArray);
+                bundle.putByteArray("Image", byteArray);
 
                 Intent intent = new Intent(view.getContext(), HospitalActivity.class);
                 intent.putExtras(bundle);
@@ -87,13 +91,12 @@ public class RecentSearchAdapter extends RecyclerView.Adapter<RecentSearchAdapte
     }
 
 
-
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // each data item is just a string in this case
         View view;
         MaterialTextView hospitalName;
-        ShapeableImageView sImageView;
+        ImageView sImageView;
         String hospitalId;
         String Description;
         private ItemClickListener itemClickListener;

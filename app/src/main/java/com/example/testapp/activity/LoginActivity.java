@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.testapp.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
@@ -117,8 +118,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    private void openRegisterActivity(){
-        startActivity(new Intent(this,RegisterActivity.class));
+    private void openRegisterActivity() {
+        startActivity(new Intent(this, RegisterActivity.class));
     }
 
 }

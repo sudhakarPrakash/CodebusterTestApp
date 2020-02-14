@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_hospital"
+            android:layout_width="150dp"
+            android:layout_height="175dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="5dp"
+            android:scaleType="fitXY" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/hospitalName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_toStartOf="@+id/rating"
+            android:layout_toEndOf="@+id/iv_hospital"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/hospitalDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hospitalName"
+            android:layout_marginBottom="2dp"
+            android:layout_toEndOf="@+id/iv_hospital"
+            android:drawableStart="@drawable/ic_location_on_black_24dp"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/hospitalAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hospitalDescription"
+            android:layout_marginBottom="2dp"
+            android:layout_toEndOf="@+id/iv_hospital"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@color/colorDarkBlue"
+            android:drawableEnd="@drawable/ic_star_yellow_20dp"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="4.6"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+

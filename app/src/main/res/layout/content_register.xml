@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".RegisterActivity"
+    tools:context=".activity.RegisterActivity"
     tools:showIn="@layout/activity_register">
 
     <RelativeLayout
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:maxLength="35"
-                android:maxLines="1"/>
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -39,11 +39,11 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/til_name"
             android:layout_marginBottom="20dp"
             android:hint="City"
             app:endIconDrawable="@drawable/ic_keyboard_arrow_down_black_24dp"
-            app:endIconMode="dropdown_menu"
-            android:layout_below="@id/til_name">
+            app:endIconMode="dropdown_menu">
 
             <com.google.android.material.textview.MaterialAutoCompleteTextView
                 android:id="@+id/tv_city"
@@ -60,11 +60,11 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/til_city"
             android:layout_marginBottom="20dp"
             android:hint="Mobile no"
             app:endIconDrawable="@drawable/ic_create_black_24dp"
-            app:endIconMode="custom"
-            android:layout_below="@id/til_city">
+            app:endIconMode="custom">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_mobileNo"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="10"
-                android:maxLines="1"/>
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,11 +81,11 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/til_mobileNo"
             android:layout_marginBottom="20dp"
             android:hint="EmailId"
             app:endIconDrawable="@drawable/ic_create_black_24dp"
-            app:endIconMode="custom"
-            android:layout_below="@id/til_mobileNo">
+            app:endIconMode="custom">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_emailId"
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:maxLength="35"
-                android:maxLines="1"/>
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,32 +102,31 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/til_emailId"
             android:layout_marginBottom="20dp"
             android:hint="Gender"
             app:endIconDrawable="@drawable/ic_keyboard_arrow_down_black_24dp"
-            app:endIconMode="dropdown_menu"
-            android:layout_below="@id/til_emailId">
+            app:endIconMode="dropdown_menu">
 
             <com.google.android.material.textview.MaterialAutoCompleteTextView
                 android:id="@+id/tv_gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
                 android:inputType="text"
                 android:maxLength="15"
-                android:paddingLeft="10dp"
-                />
+                android:maxLines="1"
+                android:paddingLeft="10dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_register"
             style="@style/ButtonTheme"
+            android:layout_below="@id/til_gender"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
-            android:text="Register"
-            android:layout_below="@id/til_gender"/>
+            android:text="Register" />
 
 
     </RelativeLayout>

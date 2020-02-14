@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".SearchHospitalActivity">
+        tools:context=".activity.SearchHospitalActivity">
 
         <RelativeLayout
             android:id="@+id/rl_searchContainer"
@@ -22,7 +22,7 @@
                 android:id="@+id/tv_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:text="Search"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
@@ -42,8 +42,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_searchDescription"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:hint="City"
                 app:endIconDrawable="@drawable/ic_keyboard_arrow_down_black_24dp"
                 app:endIconMode="dropdown_menu"
@@ -57,7 +57,33 @@
                     android:inputType="text"
                     android:maxLength="15"
                     android:padding="10dp"
-                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+                    android:textSize="15sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_services"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/til_city"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:hint="Service or Department"
+                app:endIconDrawable="@drawable/ic_keyboard_arrow_down_black_24dp"
+                app:endIconMode="dropdown_menu"
+                app:startIconDrawable="@drawable/ic_services_or_department_black_24dp">
+
+                <com.google.android.material.textview.MaterialAutoCompleteTextView
+                    android:id="@+id/tv_services"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:padding="10dp"
+                    android:paddingStart="10dp"
                     android:textSize="15sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -67,7 +93,7 @@
                 android:id="@+id/btn_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/til_city"
+                android:layout_below="@id/til_services"
                 android:backgroundTint="@color/colorYellow"
                 android:padding="10dp"
                 android:text="Search"
@@ -81,13 +107,13 @@
             android:id="@+id/rl_recent_searches"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorGrey"
-            android:background="@drawable/rounded_corner"
             android:layout_below="@id/rl_searchContainer"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/colorGrey">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mtv_recentSearches"
@@ -103,10 +129,10 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_recentSearches"
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mtv_recentSearches"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </RelativeLayout>
@@ -115,13 +141,13 @@
             android:id="@+id/rl_popular_searches"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorGrey"
-            android:background="@drawable/rounded_corner"
             android:layout_below="@id/rl_recent_searches"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/colorGrey">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mtv_popularSearches"
@@ -137,10 +163,10 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_popularSearches"
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mtv_popularSearches"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </RelativeLayout>

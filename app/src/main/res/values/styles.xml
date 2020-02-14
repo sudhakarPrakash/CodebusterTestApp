@@ -8,8 +8,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/holo_red_dark</item>
+        <!--        <item name="android:textColorPrimary">@android:color/white</item>-->
+        <!--        <item name="android:textColorSecondary">@android:color/holo_red_dark</item>-->
     </style>
 
     <style name="ButtonTheme">
@@ -18,6 +18,14 @@
     </style>
 
     <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="TabbedActivity_Theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@android:color/holo_blue_dark</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
